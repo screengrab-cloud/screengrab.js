@@ -2,6 +2,7 @@ import { useState } from 'react'
 import './App.css'
 import { ScreenGrab } from './lib/screengrab'
 import Logo from './assets/Logo'
+import { Share } from './lib/share'
 
 // if using local server
 // start screengrab-server 
@@ -22,12 +23,18 @@ function App() {
     setImageUrl(image.url)
   }
 
+  const share = () => {
+    Share.share('facebook', imageUrl)
+  }
+
   return (
     <>
       <div style={{ display: 'flex', alignItems: 'center', flexDirection: 'column' }}>
         {
           imageUrl ? (
-            <img src={imageUrl} width={'50%'} />
+            <a href='#share' onClick={share}>
+              <img src={imageUrl} width={'50%'} />
+            </a>
           ) : null
         }
         <div style={{ width: 100, height: 100 }}>
