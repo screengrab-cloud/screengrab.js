@@ -1,33 +1,56 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
+import { ScreenGrab } from './lib/screengrab'
+import Logo from './assets/Logo'
+
+const screengrab = ScreenGrab({
+  server: 'http://localhost:3031'
+})
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [imageUrl, setImageUrl] = useState('')
+
+  const getScreenGrab = async () => {
+    const image = await screengrab
+      .url('https://memezoo.app')
+      .grab()
+    setImageUrl(image.url)
+  } 
+
+  const getScreenGrabMeme = async () => {
+    const image = await screengrab
+      .url('https://memezoo.app')
+      .grab('.meme-image')
+    setImageUrl(image.url)
+  } 
 
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+      <div style={{ display: 'flex', alignItems: 'center', flexDirection: 'column' }}>
+        {
+          imageUrl ? (
+            <img src={imageUrl} width={'50%'} />
+          ) : null
+        }
+        <div style={{ width: 100, height: 100 }}>
+          <Logo />
+        </div>
       </div>
-      <h1>Vite + React</h1>
+      <h1>ScreenGrab.js</h1>
       <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
+      <button style={{ marginRight: 10 }} onClick={getScreenGrab}>
+          Grab Memezoo.app Homepage
+        </button>
+        <button onClick={getScreenGrabMeme}>
+          Grab First Meme
         </button>
         <p>
           Edit <code>src/App.tsx</code> and save to test HMR
         </p>
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <a target='_blank' href="https://docs.screengrab.cloud" className="read-the-docs">
+        Read the full docs
+      </a>
     </>
   )
 }
