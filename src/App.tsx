@@ -9,7 +9,6 @@ import Logo from './assets/Logo'
 const screengrab = ScreenGrab({
   // server: 'http://localhost:3031', // local server
   server: 'https://api.screengrab.cloud', // cloud server
-  // server: 'https://screengrab-server-production.up.railway.app', // cloud dev
   apiKey: '' // enter your api key for cloud access
 })
 
