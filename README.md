@@ -1,31 +1,50 @@
-# React + TypeScript + Vite
+# ScreenGrab.js
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Take screengrabs of HTML elements or React components on your website
 
-Currently, two official plugins are available:
+## Get Started
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Fist log into https://screengrab.cloud and get your API Key from the dashboard
 
-## Expanding the ESLint configuration
+## Quick Start
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+Install `screengrab.js` library
 
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
+```sh
+npm install --save screengrab.js
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
-# screengrab-client
+The simplest is to use the cloud hosted ScreenGrab.cloud
+
+```ts
+import { ScreenGrab } from 'screngrab.js'
+
+const screengrab = ScreenGrab('api-key')
+
+const image = await screengrab.url('https://memezoo.app').grab()
+
+console.log('screengrab url', image.url)
+
+```
+
+If you want to test on your localhost use the `screengrab-server` dev server
+
+Instructions on installing dev server: 
+https://github.com/imageapi-dev/screengrab-server
+
+Then add your server location to `screengrab.js` when initializing.
+
+```ts
+import { ScreenGrab } from 'screngrab.js'
+
+const screengrab = ScreenGrab({
+  server: 'http://localhost:3031'
+})
+
+const image = await screengrab.url('https://memezoo.app').grab()
+
+console.log('screengrab url', image.url)
+
+```
+
+For detailed information refer to https://docs.screengrab.cloud 
