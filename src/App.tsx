@@ -3,26 +3,25 @@ import './App.css'
 import { ScreenGrab } from './lib/screengrab'
 import Logo from './assets/Logo'
 
+// if using local server
+// start screengrab-server 
+// @see https://docs.screengrab.cloud
 const screengrab = ScreenGrab({
-  server: 'http://localhost:3031'
+  // server: 'http://localhost:3031', // local server
+  server: 'https://api.screengrab.cloud', // cloud server
+  // server: 'https://screengrab-server-production.up.railway.app', // cloud dev
+  apiKey: '' // enter your api key for cloud access
 })
 
 function App() {
   const [imageUrl, setImageUrl] = useState('')
 
-  const getScreenGrab = async () => {
+  const getScreenGrab = async (selector?: string) => {
     const image = await screengrab
       .url('https://memezoo.app')
-      .grab()
+      .grab(selector)
     setImageUrl(image.url)
-  } 
-
-  const getScreenGrabMeme = async () => {
-    const image = await screengrab
-      .url('https://memezoo.app')
-      .grab('.meme-image')
-    setImageUrl(image.url)
-  } 
+  }
 
   return (
     <>
@@ -38,10 +37,10 @@ function App() {
       </div>
       <h1>ScreenGrab.js</h1>
       <div className="card">
-      <button style={{ marginRight: 10 }} onClick={getScreenGrab}>
+        <button style={{ marginRight: 10 }} onClick={() => getScreenGrab()}>
           Grab Memezoo.app Homepage
         </button>
-        <button onClick={getScreenGrabMeme}>
+        <button onClick={() => getScreenGrab('.meme-image')}>
           Grab First Meme
         </button>
         <p>

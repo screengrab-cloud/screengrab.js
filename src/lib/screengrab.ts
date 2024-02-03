@@ -41,7 +41,6 @@ export class ScreenGrabClient {
       })
     })
     const json = await res.json()
-    console.log('res', { res, json })
     return json.data
   }
 
