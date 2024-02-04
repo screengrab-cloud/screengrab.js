@@ -1,7 +1,13 @@
+# React ScreenGrab Examples
+
+See: `src/App.tsx`
+
+```tsx
 import { useState } from 'react'
 import './App.css'
+import { ScreenGrab } from './lib/screengrab'
 import Logo from './assets/Logo'
-import { ScreenGrab, Share } from 'screengrab.js'
+import { Share } from './lib/share'
 
 // if using local server
 // start screengrab-server 
@@ -60,3 +66,5 @@ function App() {
 }
 
 export default App
+
+```

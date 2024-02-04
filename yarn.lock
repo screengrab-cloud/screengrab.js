@@ -1232,6 +1232,15 @@ scheduler@^0.23.0:
   dependencies:
     loose-envify "^1.1.0"
 
+screengrab.js@^0.0.2:
+  version "0.0.2"
+  resolved "https://registry.yarnpkg.com/screengrab.js/-/screengrab.js-0.0.2.tgz#f24916ddde33b1c2e885b0f6eaaafbaa42dda180"
+  integrity sha512-BOAGjV7m8b9pWinQZbgEqakvPmqVizHPhO0Ny4C+Mq87mVjr/DKyHbln45gpy2fj/suq2IksBJ9od4i8AskLfA==
+  dependencies:
+    path "^0.12.7"
+    react "^18.2.0"
+    react-dom "^18.2.0"
+
 semver@^7.5.4:
   version "7.5.4"
   resolved "https://registry.yarnpkg.com/semver/-/semver-7.5.4.tgz#483986ec4ed38e1c6c48c34894a9182dbff68a6e"
