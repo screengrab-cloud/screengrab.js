@@ -5,7 +5,7 @@ type ScreenGrabClientProps = {
 
 export class ScreenGrabClient {
 
-  siteUrl = window.location.href
+  siteUrl = globalThis?.location?.href
 
   opts: ScreenGrabClientProps = {
     server: 'https://api.screengrab.cloud',

@@ -1,0 +1,17 @@
+{
+  "name": "screengrab-server-nodejs-examples",
+  "version": "1.0.0",
+  "description": "",
+  "main": "local-server.js",
+  "type": "module",
+  "scripts": {
+    "start": "npx tsx local-server.ts",
+    "start:js": "npx tsx local-server.js"
+  },
+  "keywords": [],
+  "author": "gabe@fijiwebdesign.com",
+  "license": "ISC",
+  "dependencies": {
+    "screengrab.js": "^0.0.1"
+  }
+}
