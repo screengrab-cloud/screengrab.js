@@ -17,7 +17,7 @@ npm install --save screengrab.js
 The simplest is to use the cloud hosted ScreenGrab.cloud
 
 ```ts
-import { ScreenGrab } from 'screngrab.js'
+import { ScreenGrab } from 'screengrab.js'
 
 const screengrab = ScreenGrab('api-key')
 
@@ -35,7 +35,7 @@ https://github.com/imageapi-dev/screengrab-server
 Then add your server location to `screengrab.js` when initializing.
 
 ```ts
-import { ScreenGrab } from 'screngrab.js'
+import { ScreenGrab } from 'screengrab.js'
 
 const screengrab = ScreenGrab({
   server: 'http://localhost:3031'
