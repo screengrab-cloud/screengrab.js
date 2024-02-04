@@ -2,6 +2,12 @@
 
 Take screengrabs of HTML elements or React components on your website
 
+Website: https://screengrab.cloud
+
+Docs: https://docs.screengrab.cloud
+
+Github: https://github.com/screengrab-cloud/screengrab.js
+
 ## Get Started
 
 Fist log into https://screengrab.cloud and get your API Key from the dashboard
