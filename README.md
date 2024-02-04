@@ -13,6 +13,10 @@ Install `screengrab.js` library
 ```sh
 npm install --save screengrab.js
 ```
+or
+```
+yarn add screengrab.js
+```
 
 The simplest is to use the cloud hosted ScreenGrab.cloud
 
