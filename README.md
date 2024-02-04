@@ -14,7 +14,7 @@ Install `screengrab.js` library
 npm install --save screengrab.js
 ```
 or
-```
+```sh
 yarn add screengrab.js
 ```
 
