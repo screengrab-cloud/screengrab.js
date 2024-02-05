@@ -24,4 +24,7 @@ export default defineConfig({
       external: ['react'],
     },
   },
+  server: {
+    port: process.env.PORT
+  }
 })
