@@ -16,7 +16,7 @@ export class ShareUrl {
   }
 
   static pinterest(text: string, imageUrl?: string) {
-    const url = `https://www.pinterest.com/pin/create/button/?url=${encodeURIComponent(text)}&media=${encodeURIComponent(imageUrl)}`;
+    const url = `https://www.pinterest.com/pin/create/button/?url=${encodeURIComponent(text)}&media=${imageUrl && encodeURIComponent(imageUrl)}`;
     return url;
   }
 
