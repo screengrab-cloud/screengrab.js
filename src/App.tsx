@@ -1,8 +1,8 @@
 import { useState } from 'react'
 import './App.css'
 import Logo from './assets/Logo'
-import { ScreenGrab, Share } from 'screengrab.js'
-import { ShareUrl } from 'screengrab.js/src/lib/share'
+import { ScreenGrab } from './lib/screengrab'
+import { Share, ShareUrl } from './lib/share'
 
 // if using local server
 // start screengrab-server 

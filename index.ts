@@ -1,8 +1,9 @@
 import { ScreenGrab } from './src/lib/screengrab'
-import { Share } from './src/lib/share'
+import { Share, ShareUrl } from './src/lib/share'
 
 export {
   ScreenGrab,
-  Share
+  Share,
+  ShareUrl
 }
 
