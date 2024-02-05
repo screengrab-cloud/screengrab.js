@@ -3,6 +3,7 @@
   "version": "0.0.3",
   "type": "module",
   "scripts": {
+    "start": "vite",
     "dev": "vite",
     "dev:lib": "nodemon -w ./src -e 'ts, js'  -x npm run build",
     "build": "tsc && vite build && npm run build:copy",
