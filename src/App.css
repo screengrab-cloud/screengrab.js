@@ -40,3 +40,26 @@
 .read-the-docs {
   color: #888;
 }
+
+.app .image-box img {
+  border: 1px solid #ccc;
+  margin-bottom: 10px;
+  border-radius: 5px;
+}
+
+.app button {
+  margin-right: 5px;
+  border: 1px solid #ccc;
+}
+
+.app input {
+  margin-right: 5px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  cursor: pointer;
+  transition: border-color 0.25s;
+}

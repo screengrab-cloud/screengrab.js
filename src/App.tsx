@@ -2,6 +2,7 @@ import { useState } from 'react'
 import './App.css'
 import Logo from './assets/Logo'
 import { ScreenGrab, Share } from 'screengrab.js'
+import { ShareUrl } from 'screengrab.js/src/lib/share'
 
 // if using local server
 // start screengrab-server 
@@ -14,26 +15,51 @@ const screengrab = ScreenGrab({
 
 function App() {
   const [imageUrl, setImageUrl] = useState('')
+  const [siteUrl, setSiteUrl] = useState('')
+  const [siteSelector, setSiteSelector] = useState('')
 
-  const getScreenGrab = async (selector?: string) => {
+  const getScreenGrab = async (selector?: string, url?: string) => {
     const image = await screengrab
-      .url('https://memezoo.app')
+      .url(url || 'https://memezoo.app')
       .grab(selector)
     setImageUrl(image.url)
   }
 
-  const share = () => {
-    Share.share('facebook', imageUrl)
+  const share = (site: keyof typeof ShareUrl) => {
+    Share.share(site, imageUrl)
+  }
+
+  const onChangeSiteUrl = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSiteUrl(event.target.value)
   }
 
   return (
-    <>
+    <div className='app'>
       <div style={{ display: 'flex', alignItems: 'center', flexDirection: 'column' }}>
         {
           imageUrl ? (
-            <a href='#share' onClick={share}>
-              <img src={imageUrl} width={'50%'} />
-            </a>
+            <div>
+              <div className='image-box'>
+                <img src={imageUrl} width={'50%'} />
+              </div>
+              <div>
+                <button onClick={() => share('facebook')}>
+                  Share Facebook
+                </button>
+                {/* <button onClick={() => share('twitter')}>
+                  Share Twitter
+                </button> */}
+                <button onClick={() => share('instagram')}>
+                  Share Instagram
+                </button>
+                <button onClick={() => share('whatsapp')}>
+                  Share WhatsApp
+                </button>
+                <button onClick={() => share('telegram')}>
+                  Share Telegram
+                </button>
+              </div>
+            </div>
           ) : null
         }
         <div style={{ width: 100, height: 100 }}>
@@ -41,8 +67,14 @@ function App() {
         </div>
       </div>
       <h1>ScreenGrab.js</h1>
+      <div className='card'>
+        <input onChange={onChangeSiteUrl} placeholder='https://google.com' />
+        <button onClick={() => getScreenGrab(siteSelector, siteUrl || 'https://google.com')}>
+          Grab Url
+        </button>
+      </div>
       <div className="card">
-        <button style={{ marginRight: 10 }} onClick={() => getScreenGrab()}>
+        <button onClick={() => getScreenGrab()}>
           Grab Memezoo.app Homepage
         </button>
         <button onClick={() => getScreenGrab('.meme-image')}>
@@ -55,7 +87,7 @@ function App() {
       <a target='_blank' href="https://docs.screengrab.cloud" className="read-the-docs">
         Read the full docs
       </a>
-    </>
+    </div>
   )
 }
 
