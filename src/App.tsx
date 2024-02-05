@@ -33,6 +33,10 @@ function App() {
     setSiteUrl(event.target.value)
   }
 
+  const onChangeSiteSelector = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSiteSelector(event.target.value)
+  }
+
   return (
     <div className='app'>
       <div style={{ display: 'flex', alignItems: 'center', flexDirection: 'column' }}>
@@ -72,6 +76,9 @@ function App() {
         <button onClick={() => getScreenGrab(siteSelector, siteUrl || 'https://google.com')}>
           Grab Url
         </button>
+      </div>
+      <div>
+      Optional <input onChange={onChangeSiteSelector} placeholder='Site CSS Selector' />
       </div>
       <div className="card">
         <button onClick={() => getScreenGrab()}>
