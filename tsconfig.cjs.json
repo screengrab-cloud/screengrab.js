@@ -1,0 +1,8 @@
+{
+  "extends": "./tsconfig.esm.json",
+  "compilerOptions": {
+    "moduleResolution": "Node",
+    "module": "CommonJS",
+    "outDir": "./lib/cjs"
+  },
+}

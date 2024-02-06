@@ -1,22 +1,32 @@
 {
   "name": "screengrab.js",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "type": "module",
+  "main": "./lib/cjs/index.js",
+  "module": "./lib/esm/index.js",
+  "files": [
+    "lib/"
+  ],
   "scripts": {
+    "tsc": "npm run tsc:esm && npm run tsc:cjs",
+    "tsc:esm": "tsc -p tsconfig.esm.json",
+    "tsc:cjs": "tsc -p tsconfig.cjs.json",
+    "tsc:clean": "rm -fr lib/*",
+    "prepublishOnly": "npm run tsc",
     "start": "vite --host",
     "dev": "vite",
     "dev:lib": "nodemon -w ./src -e 'ts, js'  -x npm run build",
     "build": "tsc && vite build && npm run build:copy",
-    "build:copy": "cp dist/*.js ./public/",
+    "build:copy": "cp dist/*.js ./lib/",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
   },
   "dependencies": {
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
     "screengrab.js": "^0.0.2"
   },
   "devDependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
     "@types/react": "^18.2.43",
     "@types/react-dom": "^18.2.17",
     "@typescript-eslint/eslint-plugin": "^6.14.0",
