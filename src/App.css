@@ -41,10 +41,15 @@
   color: #888;
 }
 
+.app .image-box {
+  min-width: 600px;
+}
+
 .app .image-box img {
   border: 1px solid #ccc;
   margin-bottom: 10px;
   border-radius: 5px;
+  width: 600px;
 }
 
 .app button {

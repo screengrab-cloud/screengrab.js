@@ -3,6 +3,7 @@ import './App.css'
 import Logo from './assets/Logo'
 import { ScreenGrab } from './lib/screengrab'
 import { Share, ShareUrl } from './lib/share'
+import { Spinner } from './shared/spinner/spinner'
 
 // if using local server
 // start screengrab-server 
@@ -17,13 +18,21 @@ function App() {
   const [imageUrl, setImageUrl] = useState('')
   const [siteUrl, setSiteUrl] = useState('')
   const [siteSelector, setSiteSelector] = useState('')
+  const [isBusy, setIsBusy] = useState(false)
 
   const getScreenGrab = async (selector?: string, url?: string) => {
-    const image = await screengrab
-      .url(url || 'https://memezoo.app')
-      .grab(selector)
-    setImageUrl(image.url)
-    console.log('innerHTML', image)
+    setIsBusy(true)
+    try {
+      const image = await screengrab
+        .url(url || 'https://memezoo.app')
+        .grab(selector)
+      setImageUrl(image.url)
+      console.log('innerHTML', image)
+    } catch(e) {
+      alert('An error occurred, see console')
+      console.error(e)
+    }
+    setIsBusy(false)
   }
 
   const share = (site: keyof typeof ShareUrl) => {
@@ -42,10 +51,16 @@ function App() {
     <div className='app'>
       <div style={{ display: 'flex', alignItems: 'center', flexDirection: 'column' }}>
         {
-          imageUrl ? (
+          isBusy || imageUrl ? (
             <div>
               <div className='image-box'>
-                <img src={imageUrl} width={'50%'} />
+                {
+                  isBusy ? (
+                    <Spinner />
+                  ) : (
+                    <img src={imageUrl} />
+                  )
+                }
               </div>
               <div>
                 <button onClick={() => share('facebook')}>
