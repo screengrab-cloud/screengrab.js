@@ -68,3 +68,10 @@
   cursor: pointer;
   transition: border-color 0.25s;
 }
+
+.app .review {
+  padding: 10px;
+  margin: 5px;
+  border: 1px solid #eee;
+  border-radius: 10px;
+}

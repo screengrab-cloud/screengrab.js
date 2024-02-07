@@ -19,6 +19,7 @@ function App() {
   const [siteUrl, setSiteUrl] = useState('')
   const [siteSelector, setSiteSelector] = useState('')
   const [isBusy, setIsBusy] = useState(false)
+  const [reviews, setReviews] = useState<string[]>([])
 
   const getScreenGrab = async (selector?: string, url?: string) => {
     setIsBusy(true)
@@ -32,6 +33,20 @@ function App() {
       alert('An error occurred, see console')
       console.error(e)
     }
+    setIsBusy(false)
+  }
+
+  const grabReviews = async () => {
+    setIsBusy(true)
+    const grab = await screengrab
+      .url('https://www.producthunt.com/posts/screen-grab')
+      .grab('#comments')
+    const html = grab.innerHTML
+    const dom = document.createElement('div')
+    dom.innerHTML = html
+    const threadEls = dom.querySelectorAll('[data-test*=thread]')
+    const threads = [...threadEls].map(thread => thread.textContent)
+    setReviews(threads as string[])
     setIsBusy(false)
   }
 
@@ -80,7 +95,18 @@ function App() {
                 </button>
               </div>
             </div>
-          ) : null
+          ) : (
+            reviews.length ? (
+              reviews.map(review => (
+                <div
+                  key={review}
+                  className='review'
+                >
+                  {review}
+                </div>
+              ))
+            ) : null
+          )
         }
         <div style={{ width: 100, height: 100 }}>
           <Logo />
@@ -97,6 +123,9 @@ function App() {
       Optional <input onChange={onChangeSiteSelector} placeholder='Site CSS Selector' />
       </div>
       <div className="card">
+      <button onClick={() => grabReviews()}>
+          Grab Product Hunt Reviews
+        </button>
         <button onClick={() => getScreenGrab()}>
           Grab Memezoo.app Homepage
         </button>
