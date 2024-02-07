@@ -8,7 +8,7 @@ import { Share, ShareUrl } from './lib/share'
 // start screengrab-server 
 // @see https://docs.screengrab.cloud
 const screengrab = ScreenGrab({
-  // server: 'http://localhost:3031', // local server
+  // server: 'http://localhost:3030', // local server
   server: 'https://api.screengrab.cloud', // cloud server
   apiKey: '' // enter your api key for cloud access
 })
@@ -23,6 +23,7 @@ function App() {
       .url(url || 'https://memezoo.app')
       .grab(selector)
     setImageUrl(image.url)
+    console.log('innerHTML', image)
   }
 
   const share = (site: keyof typeof ShareUrl) => {

@@ -1,6 +1,11 @@
-type ScreenGrabClientProps = {
+export type ScreenGrabClientProps = {
   server: string;
   apiKey: string;
+}
+
+export type ScreenGrabResponse = {
+  url: string;
+  innerHTML: string;
 }
 
 export class ScreenGrabClient {
@@ -23,7 +28,7 @@ export class ScreenGrabClient {
     return this
   }
 
-  async grab(selector?: string) {
+  async grab(selector?: string): Promise<ScreenGrabResponse> {
     const serverUrl = `${this.opts.server}/screenshot/create`
     const res = await fetch(serverUrl, {
       method: 'POST',
@@ -41,7 +46,7 @@ export class ScreenGrabClient {
       })
     })
     const json = await res.json()
-    return json.data
+    return json.data as ScreenGrabResponse
   }
 
 }
