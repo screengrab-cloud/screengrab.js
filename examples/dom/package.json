@@ -1,0 +1,18 @@
+{
+  "name": "screengrab-jsdom-example",
+  "version": "1.0.0",
+  "description": "",
+  "main": "jsdom.js",
+  "type": "module",
+  "scripts": {
+    "start": "npx tsx jsdom.ts"
+  },
+  "keywords": [],
+  "author": "gabe@fijiwebdesign.com",
+  "license": "ISC",
+  "dependencies": {
+    "@types/jsdom": "^21.1.6",
+    "jsdom": "^24.0.0",
+    "screengrab.js": "^0.0.1"
+  }
+}
