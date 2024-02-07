@@ -23,6 +23,7 @@ function App() {
 
   const getScreenGrab = async (selector?: string, url?: string) => {
     setIsBusy(true)
+    setReviews([])
     try {
       const image = await screengrab
         .url(url || 'https://memezoo.app')
@@ -38,6 +39,7 @@ function App() {
 
   const grabReviews = async () => {
     setIsBusy(true)
+    setImageUrl('')
     const grab = await screengrab
       .url('https://www.producthunt.com/posts/screen-grab')
       .grab('#comments')
@@ -77,25 +79,32 @@ function App() {
                   )
                 }
               </div>
-              <div>
-                <button onClick={() => share('facebook')}>
-                  Share Facebook
-                </button>
-                {/* <button onClick={() => share('twitter')}>
-                  Share Twitter
-                </button> */}
-                <button onClick={() => share('instagram')}>
-                  Share Instagram
-                </button>
-                <button onClick={() => share('whatsapp')}>
-                  Share WhatsApp
-                </button>
-                <button onClick={() => share('telegram')}>
-                  Share Telegram
-                </button>
-              </div>
+              {
+                imageUrl ? (
+                  <div>
+                    <button onClick={() => share('facebook')}>
+                      Share Facebook
+                    </button>
+                    {/* <button onClick={() => share('twitter')}>
+                      Share Twitter
+                    </button> */}
+                    <button onClick={() => share('instagram')}>
+                      Share Instagram
+                    </button>
+                    <button onClick={() => share('whatsapp')}>
+                      Share WhatsApp
+                    </button>
+                    <button onClick={() => share('telegram')}>
+                      Share Telegram
+                    </button>
+                  </div>
+                ) : null
+              }
             </div>
-          ) : (
+          ) : null
+        }
+        {
+          (
             reviews.length ? (
               reviews.map(review => (
                 <div
