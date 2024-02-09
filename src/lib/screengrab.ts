@@ -28,8 +28,8 @@ export class ScreenGrabClient {
     return this
   }
 
-  async grab(selector?: string): Promise<ScreenGrabResponse> {
-    const serverUrl = `${this.opts.server}/screenshot/create`
+  async post(path:string, selector?: string): Promise<ScreenGrabResponse> {
+    const serverUrl = `${this.opts.server}${path}`
     const res = await fetch(serverUrl, {
       method: 'POST',
       headers: {
@@ -46,7 +46,21 @@ export class ScreenGrabClient {
       })
     })
     const json = await res.json()
-    return json.data as ScreenGrabResponse
+    const data = {
+      url: '',
+      innerHTML: ''
+    }
+    return { ...data, ...json.data } as ScreenGrabResponse
+  }
+
+  async grab(selector?: string): Promise<Pick<ScreenGrabResponse, 'url'>> {
+    const data = await this.post('/screenshot/create', selector)
+    return data
+  }
+
+  async grabHtml(selector?: string): Promise<Pick<ScreenGrabResponse, 'innerHTML'>> {
+    const data = await this.post('/html/innerHTML', selector)
+    return data
   }
 
 }

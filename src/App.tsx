@@ -9,8 +9,8 @@ import { Spinner } from './shared/spinner/spinner'
 // start screengrab-server 
 // @see https://docs.screengrab.cloud
 const screengrab = ScreenGrab({
-  // server: 'http://localhost:3030', // local server
-  server: 'https://api.screengrab.cloud', // cloud server
+  // server: 'http://localhost:3031', // local server
+  // server: 'https://api.screengrab.cloud', // cloud server
   apiKey: '' // enter your api key for cloud access
 })
 
@@ -25,11 +25,11 @@ function App() {
     setIsBusy(true)
     setReviews([])
     try {
-      const image = await screengrab
+      const grab = await screengrab
         .url(url || 'https://memezoo.app')
         .grab(selector)
-      setImageUrl(image.url)
-      console.log('innerHTML', image)
+      setImageUrl(grab.url)
+      console.log('grab', grab)
     } catch(e) {
       alert('An error occurred, see console')
       console.error(e)
@@ -42,7 +42,8 @@ function App() {
     setImageUrl('')
     const grab = await screengrab
       .url('https://www.producthunt.com/posts/screen-grab')
-      .grab('#comments')
+      .grabHtml('#comments')
+    console.log('grab', grab)
     const html = grab.innerHTML
     const dom = document.createElement('div')
     dom.innerHTML = html
