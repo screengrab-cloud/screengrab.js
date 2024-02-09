@@ -11,6 +11,8 @@ export declare class ScreenGrabClient {
     opts: ScreenGrabClientProps;
     constructor(opts?: Partial<ScreenGrabClientProps>);
     url(siteUrl: string): this;
-    grab(selector?: string): Promise<ScreenGrabResponse>;
+    post(path: string, selector?: string): Promise<ScreenGrabResponse>;
+    grab(selector?: string): Promise<Pick<ScreenGrabResponse, 'url'>>;
+    grabHtml(selector?: string): Promise<Pick<ScreenGrabResponse, 'innerHTML'>>;
 }
 export declare const ScreenGrab: (opts?: Partial<ScreenGrabClientProps> | string) => ScreenGrabClient;
